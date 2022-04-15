@@ -7,7 +7,7 @@ Ich habe auf dem frisch aufgesetzten Rechner lediglich noch sechs Kommandozeilen
 $ sudo add-apt-repository ppa:gnuradio/gnuradio-releases   <- damit wir version 3.10+ erhalten, weil sonst Ubuntus Repos zu alt sind :P
 
 wir können überprüfen, welche Version installiert _würde_, mit folgendem Befehl: 
-$ sudo add-apt-repository ppa:gnuradio/gnuradio-releases
+$ apt show gnuradio
 Falls da 3.10+ rauskommt, weiter mit:
 $ sudo apt install gnuradio
 
