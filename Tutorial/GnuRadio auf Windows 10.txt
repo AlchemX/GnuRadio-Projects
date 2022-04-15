@@ -1,0 +1,110 @@
+April 2022 - Andreas Rodler HB9HDF
+------------------------------------------------------------------------------
+Die folgende Anleitung zeigt, wie man GnuRadio auf Windows 10 installiert.
+BEDENKE: GnuRadio ist nicht primär für Windows gedacht, sondern für Linux (Ubuntu). Support aus der Community (auch speziell von mir!) wird limitiert oder nicht verfügbar sein!
+------------------------------------------------------------------------------
+Link gefunden auf:
+https://wiki.gnuradio.org/index.php/WindowsInstall
+------------------------------------------------------------------------------
+
+Öffne den Browser und gehe auf die folgende Website: http://www.gcndevelopment.com/gnuradio/index.htm
+		
+Wähle folgenden Link: v3.8.2.0/v2.0 (py3.9) -> Lade den "MSI-Installer" herunter und führe ihn aus.
+Lasse die Installation dieses MSI voll durchlaufen, dies kann einige Minuten dauern, es werden ca 1.5GB auf der Festplatte belegt. 
+Die Installation wird normalerweise erstellt in: C:\Program Files\GNURadio-3.8
+	
+Sobald die Installation komplett durchgelaufen ist, schliesse den Dialog, und öffne den File-Explorer, dann navigiere in folgendes Verzeichniss:
+C:\Program Files\GNURadio-3.8\bin   und führe die Applikation "volk_profile.exe" aus. Dies kann einige Minuten dauern. Nun ist GnuRadio einsatzbereit.
+
+Der HackRF funktioniert nun bereits.
+
+-----------------------------------------------------------
+
+Installation RTL-SDR - Treiber für Windows
+
+Für den RTL-SDR müssen wir noch einige Schritte machen:
+Stecke zunächst deinen RTL-SDR in den PC ein. Windows wird das gerät vielleicht erkennen, aber höchstwahrscheinlich nicht als RTL-SDR.
+
+Öffne den Browser und gehe auf die folgende Website: https://www.rtl-sdr.com/rtl-sdr-quick-start-guide/
+Du kannst entweder deinen RTL-SDR wie auf dieser Webpage erklärt installieren, oder dieser Anleitung weiter folgen.
+
+Scrolle runter bis du den Link findest "download Zadiq manually".
+https://zadig.akeo.ie/downloads/
+Navigiere dort hin, und lade die neueste zadig-exe herunter, aktuell ist dies (15.April 2022) "zadig-2.5.exe".
+Dies ist der Treiber-Installer für die RTL-SDR-Sticks.
+Führe die exe mit Admin-Privilegien aus (dein Windows wird dich allenfals danach fragen).
+Falls Zadig online nach updates suchen will, wähle "No".
+In der oberen Menüleiste von Zadig, wähle "Options", dann Häkchen setzen bei "List all Devices".
+Erneut in der oberen Menüleiste von Zadig, wähle "Options", dann Häkchen entfernen bei "Ignore Hubs or Composite parents".
+Nun kannst du im Dropwodn-Menu den korrekten Entrag wählen:
+Entweder "Bulk-In Interface (Interface 0)" oder direkt RTL2838xxxxx
+Stelle nun Sicher, dass im Feld "USB ID" folgendes steht: "0BDA 2838". Alles andere könnte wichtige Treiber auf deinem PC überschreiben!
+Klicke danach auf die Schaltfläche "Replace Driver".
+Zadig wird kurz einfrieren, und dich danach fragen, ob du wirklich den Systemtreiber modifizieren willst - Klicke auf Ja (Yes).
+Ein Ladebalken erscheint, der Treiber wird ersetzt.
+Wenn der Prozess abgeschlossen ist, kannst du die Meldung sowie Zadig schliessen.
+
+Nun müsste der RTL-SDR auf der Geräteauswahl von GQRX nutzbar sein.
+---------------------------------------------------------------
+
+Installation ADALM-PLUTO - Treiber und Geräteblöcke für GnuRadio 
+HINWEIS: Analog Devices hat die Entwicklung / Pflege für die Windows-Version von GnuRadio für ADALM-PLUTO SDR gänzlich eingestellt.
+Hierzu wird eine ältere Version von GnuRadio (3.7) genutzt, die mit dem Support für ADALM-Pluto kompiliert wurde. Siehe weiter unten.
+Analog Devices empfiehlt, auf Windows nicht nativ mit GnuRadio zu arbeiten, sondern WSL zu nutzen, um ein Ubuntu zu installieren.
+
+WEITERER HINWEIS: die Funktionsblöcke für Pluto von GnuRadio 3.7 können NICHT nach GnuRadio 3.8 portiert werden, weil die GUI-Files für die Blöcke nicht zwischen diesen Versionen kompatibel sind. 
+
+
+Stecke deinen Pluto in deinen PC ein. Windows müsste ihn erkennen und wie einen USB-Stick als kleines Laufwerk (read-only) zur Verfügung stellen.
+Öffne den File-Explorer, dann navigiere in dieses Laufwerk-Verzeichniss. Es wurde bei mir als "PludoSDR (D:)" eingebunden.
+Darin findest du eine "info.html"-Datei. Doppelklicke darauf, und sie wird in einem Browser geöffnet.
+Unter "Getting Started" sind die schritte zur Installation von Treiber und libiio-Bibliothek aufgelistet.
+
+Ich gehe davon aus, dass eine Firmware aktuell ist. Falls nicht, folge der Anleitung dazu im Link.
+
+Lade zunächst den WindowsTreiber herunter. Der Link dazu ist ebenfalls angegeben.
+Aktuell (April 2022) ist dies PlutoSDR-M2k-USB-Drivers.exe (v0.9), auch zu finden unter https://github.com/analogdevicesinc/plutosdr-m2k-drivers-win/releases
+Führe die .exe aus, und folge der Installation bis zum Ende.
+
+Nun benötigen wir noch die libiio-Bibliothek.
+Sie kann ebenfalls direkt aus dem info.html heruntergeladen werden, aber:
+ACHTUNG - die neueste Version (0.23) funktionierte bei mir nicht, da fehlten diverse Abhängigkeiten (.dll), welche der Installer von Verson 0.23 nicht mitbringt.
+Stattdessen: lade Version 0.21 herunter, Dateiname: "libiio-0.21.g565bf68-Windows-setup.exe"  
+zu finden unter: https://github.com/analogdevicesinc/libiio/releases  - einfach weiter runter scrollen bis version 0.21.
+
+Führe die .exe aus. Möglicherweise wird Windows nun übel motzen, weil der Windows-Defender die Datei als Sicherheitsrisiko einstuft. 
+Wenn man auf "Mehr Infos" (More info) klickt, wird aber ein "Trotzdem ausführen" (Run anyway) - Button angezeigt, hier nun drauf klicken.
+Dein Windows wird dich allenfalls nach Admin-Privilegien fragen. Folge der Installation bis zum Ende. 
+Beachte, dass dich der Installer evtl. auffordern wird, dein(e) Browserfenster zu schliessen.
+
+Ob die Libiio nun korrekt installiert ist, können wir wie folgt testen:
+Öffne ein Kommandozeilen-Fenster (cmd).
+Gib folgenden Befehl ein:
+C:\> iio_info -s
+Tut man dies, so sollte eigentlich die Gerätekennung des ADALM-PLUTO aufgelistet werden:
+Unable to create Local IIO context : Function not implemented
+Available contexts:
+        0: 0456:b673 (Analog Devices Inc. PlutoSDR (ADALM-PLUTO)), serial=1044730a19970012040006008dc97bfbe4 [usb:3.2.5]
+        1: 192.168.2.1 (Analog Devices PlutoSDR Rev.B (Z7010-AD9364)), serial=1044730a19970012040006008dc97bfbe4 [ip:pluto.local]
+
+Nun laden wir von Analog Devices eine ältere Version von GnuRadio (3.7), die mit dem Support für ADALM-Pluto kompiliert wurde.
+Öffne den Browser und gehe auf die folgende Website:  https://wiki.analog.com/resources/tools-software/linux-software/gnuradio_windows?rev=1610599102
+
+Dort den Link klicken zu: Windows 10 MSI installer. Die Datei "gnuradio_3.7.11_iiosupport_win64.msi" wird herunter geladen.
+Führe die .exe aus. Möglicherweise wird Windows nun übel motzen, weil der Windows-Defender die Datei als Sicherheitsrisiko einstuft.
+Wenn man auf "Mehr Infos" (More info) klickt, wird aber ein "Trotzdem ausführen" (Run anyway) - Button angezeigt, hier nun drauf klicken.
+Dein Windows wird dich allenfalls nach Admin-Privilegien fragen. Folge der Installation bis zum Ende. 
+
+Nun ist eine zweite Version (3.7) von GnuRadio bereit, die mit ADALM-PlutoSDR genutzt werden kann.
+
+----------------------------------------------------------------
+
+GQRX:
+HackRF One : Erfolgreich getestet!
+RTL-SDR: Erfolgreich getestet!
+ADALM-PLUTO: Nicht möglich
+
+GnuRadio Companion:
+HackRF One : Erfolgreich getestet!
+RTL-SDR: Erfolgreich getestet!
+ADALM-PLUTO: Nur unter Gnuradio 3.7, direkt von Analog Devices.
