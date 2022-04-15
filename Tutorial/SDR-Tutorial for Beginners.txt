@@ -52,19 +52,23 @@ Diese Anleitungen wurden im April 2022 geschrieben, und könnten später veralte
 Ich werde die Betriebsysteme Windows 10 sowie Linux (Ubuntu) abdecken.
 Dies, weil es dafür die beste Softwareunterstüzung von den meisten SDR-Herstellern gibt - was auch klarstellen sollte, weshalb MacOS hier nicht vorkommt. SDR auf virtualisierten Umgebungen sind z.T. möglich, aber Problembehaftet wegen Performance und USB-Schnittstellen-Weiterleitungen etc. etc.
 
-Windows 10
+Alle Tutorials sind zentral hier abgelegt:
+https://github.com/AlchemX/GnuRadio-Projects/tree/master/Tutorial
 
+Windows 10
+Die Anleitung findet sich hier:
+https://github.com/AlchemX/GnuRadio-Projects/blob/master/Tutorial/GnuRadio%20auf%20Windows%2010.txt
 
 
 Ubuntu Linux (Getestet auf Ubuntu 21.10)
 Die Anleitung findet sich hier:
-https://github.com/AlchemX/GnuRadio-Projects/blob/master/ADALM-PLUTO%20SDR%20mit%20Gnuradio%203.10plus%20Ubuntu21.10.txt
+https://github.com/AlchemX/GnuRadio-Projects/blob/master/Tutorial/GnuRadio%203.10plus%20auf%20Ubuntu21.10.%20PlutoSDR%2C%20RTL-SDR%2C%20HackRF.txt
 
 
 Raspberry Pi:
 https://github.com/SensorsIot/SDRstack/blob/main/Anleitung%20Installation%20PiSDR%20image%20auf%20Raspi%204
-
-
+oder 
+https://github.com/AlchemX/GnuRadio-Projects/blob/master/Tutorial/Anleitung%20Installation%20PiSDR%20image%20auf%20Raspi%204.txt
 
 
 ======================================================================================
