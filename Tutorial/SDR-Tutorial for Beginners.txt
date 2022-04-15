@@ -15,7 +15,7 @@ Obwohl alle diese Softwares mehrere Demodulationen und Betriebsarten etc haben, 
 Mit solcher Software können wir praktisch beliebige Signalverarbeitung erstellen, und auch "on the fly" ändern.
 Allerdings müssen wir meist bei null anfangen, da es keine "Library" von fertig vorkunfigurierten und getesteten Plugins gibt. (Zumindest nicht, dass ich wüsste - falls doch, wäre ich für Hinweise dankbar). Anstelledessen gibt es in dieser Art Software viele Funktionsblöcke, welche zB einen Filter, einen Demodulator, ein Oszilloskop oder einen Funktionsgenerator darstellen. Es ist danach am Benutzer, diese zuerst zu konfigurieren und danach zu einem funktionierenden Gesamtsystem zu verknüpfen.
 
-Bei zweckgebundener Software ist es oft auch so, dass diese an ein bestimmtes Hardware-Interface gebunden ist (SRDUno für SDRPlay zB). Bei oniverseller Software kann prinzipiell jedes Hardwareinterface genutzt werden - sofern ein Treiber bzw. eine Installationsmethode existiert, die dieses innerhalb der Software verfügbar macht.
+Bei zweckgebundener Software ist es oft auch so, dass diese an ein bestimmtes Hardware-Interface gebunden ist (SRDUno für SDRPlay zB). Bei universeller Software kann prinzipiell jedes Hardwareinterface genutzt werden - sofern ein Treiber bzw. eine Installationsmethode existiert, die dieses innerhalb der Software verfügbar macht.
 
 Im weiteren werde ich mich ausschliesslich auf GnuRadio als "Arbeitsumgebung" beziehen.
 
