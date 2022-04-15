@@ -45,3 +45,4 @@ Bei der Installation von "GQRX" (einem simplen SDR-Graphical-Frontend, RX only) 
 $ sudo apt-get install gqrx-sdr 
 
 Danach Neustarten, und die Blöcke sind in GnuRadio-Companion vorhanden.
+Falls du beim HackRF beim benutzen des Funktionsblocks in GnuRadio, oder in GQRX selber, einen Fehler erhälst (-1000 Device Busy), dann entweder den HackRF aus- und wieder einstecken, oder PC rebooten.
