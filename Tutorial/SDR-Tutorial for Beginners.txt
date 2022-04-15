@@ -4,7 +4,8 @@ Nachdem gestern auf der Runde von mehreren Personen die Frage nach Einführungen
 ======================================================================================
 0. Einleitung
 ======================================================================================
-Wie ihr sicher schon wisst, nutzt SDR rein Softwareseitige Signalverarbeitung und De/Modulation. Die Hardware ist "nur" das RF-Interface, ein Empfänger nimmt also Funksignale mehr oder weniger Breitbanding auf, und gibt diese als Datenstrom an den PC weiter. Das Wort "nur" steht in Anführungszeichen, weil ein solches SDR - RF - Gerät sehr komplex & kompliziert werden kann. 
+Wie ihr sicher schon wisst, nutzt SDR rein Softwareseitige Signalverarbeitung und De/Modulation. Die Hardware ist "nur" das RF-Interface, ein Empfänger nimmt also Funksignale mehr oder weniger Breitbanding auf, und gibt diese als Datenstrom an den PC weiter. 
+Das Wort "nur" steht in Anführungszeichen, weil ein solches SDR - RF - Gerät sehr komplex & kompliziert werden kann. 
 Beim Senden passiert demnach das umgekehrte, der PC erstellt ein Signal in Software, und schickt es zum SDR, der es in RF umsetzt.
 
 Wie auf der Funkrunde erwähnt, gibt es grundsätzlich zwei Typen von Software, die man mit SDR-Hardware nutzen kann:
@@ -41,9 +42,11 @@ Diese Tutorials mögen zwar für den HackRF gedacht sein, jedoch kann man die In
 Viel wichtiger als das verwendete Gerät sind die Hintergrunderklärungen, sowohl zu obigen Themen, als auch zu GnuRadio-Companion (der Benutzeroberfläche an sich).
 
 Von dieser Basis gehe ich bei der Besprechung meiner Flowgraphs im folgenden auch aus.
-Ebenfalls gehe ich davon aus, dass ein passendes SDR-Hardware-Interface in GnuRadio eingebunden werden konnte, d.h. dass ein Treiber dafür verfügbar ist auf dem Betriebssystem, sowie ein Funktionsblock (Source bei Empfängern, oder Sink bei Sendern) für dieses SDR-Interface innerhalb GnuRadio vorzufinden ist.
+Ebenfalls gehe ich davon aus, dass ein passendes SDR-Hardware-Interface in GnuRadio eingebunden werden konnte, d.h. dass ein Treiber dafür verfügbar ist auf dem Betriebssystem, sowie ein Funktionsblock (Source bei Empfängern, oder Sink bei Sendern) für dieses SDR-Interface innerhalb GnuRadio vorzufinden ist. 
 
-Im Nächsten Kapitel widme ich mich der Installation von GnuRadio auf versch. Betriebssystemen.
+Im Nächsten Kapitel widme ich mich der Installation von GnuRadio auf versch. Betriebssystemen. 
+Da dies für viele Einsteiger ein grosses Hindernis darstellt, habe ich Anleitungen erstellt, welche die Installation der Software & Treiber in Unbuntu und Windows (10) zeigen. 
+Eine Weitere Anleitung zielt auf ein "Gesamtsystem" ab, den Raspberry Pi, welcher nach Installation des PiSDR-Images als universelle SDR-Platform genuttz werden kann.
 
 ======================================================================================
 1. Installation von GnuRadio & GnuRadio-Companion, sowie der Treiber für die SDR-Interfaces
