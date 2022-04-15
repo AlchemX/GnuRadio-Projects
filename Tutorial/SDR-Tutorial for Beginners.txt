@@ -1,0 +1,77 @@
+Guete Morge!
+Nachdem gestern auf der Runde von mehreren Personen die Frage nach Einführungen in SDR kamen, will ich hier gerne etwas zusammenstellen.
+
+======================================================================================
+0. Einleitung
+======================================================================================
+Wie ihr sicher schon wisst, nutzt SDR rein Softwareseitige Signalverarbeitung und De/Modulation. Die Hardware ist "nur" das RF-Interface, ein Empfänger nimmt also Funksignale mehr oder weniger Breitbanding auf, und gibt diese als Datenstrom an den PC weiter. Das Wort "nur" steht in Anführungszeichen, weil ein solches SDR - RF - Gerät sehr komplex & kompliziert werden kann. 
+Beim Senden passiert demnach das umgekehrte, der PC erstellt ein Signal in Software, und schickt es zum SDR, der es in RF umsetzt.
+
+Wie auf der Funkrunde erwähnt, gibt es grundsätzlich zwei Typen von Software, die man mit SDR-Hardware nutzen kann:
+- Zweckgebundene Software, die eine oder mehrere fixe Anwendungen beherrbergt. Beispiele sind SDR#, GQRX, SDRPlay SDRUno, etc.
+Obwohl alle diese Softwares mehrere Demodulationen und Betriebsarten etc haben, die wir alle recht feinkörnig bedienen können, sind sie dennoch Zweckgebunden in dem Sinne, dass sie uns nicht erlauben, einfach neue Funktionen hinzuzufügen - wir müssen mit den Funktionen leben, die eingebaut, oder über Module/Plugins hinzugefügt werden können (wie bei SDR#).
+
+- Universale Software wie GnuRadio (bzw. GnuRadio companion), oder Pohtosware (nein, kein Schreibfehler).
+Mit solcher Software können wir praktisch beliebige Signalverarbeitung erstellen, und auch "on the fly" ändern.
+Allerdings müssen wir meist bei null anfangen, da es keine "Library" von fertig vorkunfigurierten und getesteten Plugins gibt. (Zumindest nicht, dass ich wüsste - falls doch, wäre ich für Hinweise dankbar). Anstelledessen gibt es in dieser Art Software viele Funktionsblöcke, welche zB einen Filter, einen Demodulator, ein Oszilloskop oder einen Funktionsgenerator darstellen. Es ist danach am Benutzer, diese zuerst zu konfigurieren und danach zu einem funktionierenden Gesamtsystem zu verknüpfen.
+
+Bei zweckgebundener Software ist es oft auch so, dass diese an ein bestimmtes Hardware-Interface gebunden ist (SRDUno für SDRPlay zB). Bei oniverseller Software kann prinzipiell jedes Hardwareinterface genutzt werden - sofern ein Treiber bzw. eine Installationsmethode existiert, die dieses innerhalb der Software verfügbar macht.
+
+Im weiteren werde ich mich ausschliesslich auf GnuRadio als "Arbeitsumgebung" beziehen.
+
+Die Benutzung der Funktionsblöcke, sowie deren Verknüpfung und Konfiguration erfordert einige Grundkenntnisse im Überthema "Digital Signal Processing", konkret in folgenden Themen:
+
+- Mathematik: Komplexe Zahlen (zumindest die Grundrechenarten), Dezibel/Logarithmen, Potenzrechnen
+- Samplegrösse vs Samplerate vs Datenrate
+- Aliasing, Quantisierung, Nyquist-Shannon-Abtasttheorem
+- Filterdesign in Software
+- Instrumentierung virtuell (Oszilloskop, Spectrum Analyzer, Wasserfall)
+- Datentypen in der Informatik sowie speziell innerhalb Digitaler Singalprozessierung: 
+	Float, 
+	I/Q(complex), 
+	Integer, 
+	Binary
+- Was ein SDR-Interface "macht": ADC/DAC/Amplification/Pre-Filtering/Synthesis/USB-Interface
+
+Alle diese Themen werden in der Tutorial-Serie von Mike Ossmann, dem Erfinder des HackRF One, behandelt.
+Zu finden hier:
+https://greatscottgadgets.com/sdr/
+
+Diese Tutorials mögen zwar für den HackRF gedacht sein, jedoch kann man die Instruktionen fast allesamt auch mit anderen Sendefähigen SDR-Geräten durchführen, wie ADALM-Pluto (TX & RX), LimeSDR (TX & RX). Den Grossteil der praktischen Arbeiten kann man tatsächlich auch problemlos mit einem RTL-SDR-Stick (RX only) bewältigen.
+Viel wichtiger als das verwendete Gerät sind die Hintergrunderklärungen, sowohl zu obigen Themen, als auch zu GnuRadio-Companion (der Benutzeroberfläche an sich).
+
+Von dieser Basis gehe ich bei der Besprechung meiner Flowgraphs im folgenden auch aus.
+Ebenfalls gehe ich davon aus, dass ein passendes SDR-Hardware-Interface in GnuRadio eingebunden werden konnte, d.h. dass ein Treiber dafür verfügbar ist auf dem Betriebssystem, sowie ein Funktionsblock (Source bei Empfängern, oder Sink bei Sendern) für dieses SDR-Interface innerhalb GnuRadio vorzufinden ist.
+
+Im Nächsten Kapitel widme ich mich der Installation von GnuRadio auf versch. Betriebssystemen.
+
+======================================================================================
+1. Installation von GnuRadio & GnuRadio-Companion, sowie der Treiber für die SDR-Interfaces
+======================================================================================
+Diese Anleitungen wurden im April 2022 geschrieben, und könnten später veraltet sein!
+Ich werde die Betriebsysteme Windows 10 sowie Linux (Ubuntu) abdecken.
+Dies, weil es dafür die beste Softwareunterstüzung von den meisten SDR-Herstellern gibt - was auch klarstellen sollte, weshalb MacOS hier nicht vorkommt. SDR auf virtualisierten Umgebungen sind z.T. möglich, aber Problembehaftet wegen Performance und USB-Schnittstellen-Weiterleitungen etc. etc.
+
+Windows 10
+
+
+
+Ubuntu Linux (Getestet auf Ubuntu 21.10)
+Die Anleitung findet sich hier:
+https://github.com/AlchemX/GnuRadio-Projects/blob/master/ADALM-PLUTO%20SDR%20mit%20Gnuradio%203.10plus%20Ubuntu21.10.txt
+
+
+Raspberry Pi:
+https://github.com/SensorsIot/SDRstack/blob/main/Anleitung%20Installation%20PiSDR%20image%20auf%20Raspi%204
+
+
+
+
+======================================================================================
+2. Diskussion konkrete Flowgraphen
+======================================================================================
+
+
+Als "Hello World" behandelt Mike Ossmann in seinem Tutorial auch den einfachen FM-Radioempfang. Diese Technik könnte bei uns in der Schweiz bereits in einigen Jahren passé sein, daher wird mein erster Flowgraph den im Amateurfunk üblichen Narrowband-FM nutzen bzw. empfangen.
+
+

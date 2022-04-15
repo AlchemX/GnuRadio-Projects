@@ -1,0 +1,47 @@
+Guete Morge!  (April 2022)
+Einige von euch können sich vielleicht noch erinnern, dass ich vor einiger Zeit eine riesenlange komplexe Anleitung geschrieben habe, wie man ADALM-PLUTO SDR auf Linux installiert.
+
+Mit GNURadio 3.10+ auf Ubuntu 21.10 (Irritierender Iltis oder sowas) sind die ganzen Libraries für ADALM-PLUTO bereits "drin".
+Ich habe auf dem frisch aufgesetzten Rechner lediglich noch sechs Kommandozeilenbefehle benötigt, die wie folgt funktionieren:
+
+$ sudo add-apt-repository ppa:gnuradio/gnuradio-releases   <- damit wir version 3.10+ erhalten, weil sonst Ubuntus Repos zu alt sind :P
+
+wir können überprüfen, welche Version installiert _würde_, mit folgendem Befehl: 
+$ sudo add-apt-repository ppa:gnuradio/gnuradio-releases
+Falls da 3.10+ rauskommt, weiter mit:
+$ sudo apt install gnuradio
+
+Wenn wir an diesem Punkt irgendwas simples in GnuRadio zusammenbasteln, kommt ein Fehler: module "packaging" not found. 
+Die Entwickler von GNURadio haben vergessen, dass nicht jede default-Installation von Python (worauf GNURadio ja basiert) auf zB Ubtuntu alle notwendigen Pakete enthält. 
+Also installieren wir diese mit pip:
+$ sudo apt install python3-pip  (falls noch nicht vorhanden, bei mir zB nicht)
+$ pip3 install packaging
+
+Jetzt können wir mit "normalen" Blöcken im GNURadio rumspielen. 
+
+Die Blöcke for ADALM PLUTO SRD sind auch schon da, wir benötigen für deren Benutzung aber noch eine Information: die "lokale Adresse", entweder über IP oder am USB-Bus.
+Dazu benötigen wir "libiio", welche wie folgt installiert wird:
+$ sudo apt-get install libiio-util
+(ja, das war bei mir nicht 100% die neueste Version, hat aber offenbar keine Probleme verursacht. 
+Eine gaanz neue version gäbe es auf: https://github.com/analogdevicesinc/libiio  )
+
+Nach einem REBOOT können wir die Adresse abfragen wie folgt:
+$ iio_info -s
+
+Der Output sollte wie folgt aussehen:
+
+Library version: 0.21 (git tag: v0.21)
+Compiled with backends: local xml ip usb serial
+Unable to create Local IIO context : No such file or directory
+Available contexts:
+	0: 0456:b673 (Analog Devices Inc. PlutoSDR (ADALM-PLUTO)), serial=1044730a19970012040006008dc97bfbe4 [usb:1.8.5]
+
+Den letzten Teil dieser Ausgabe (usb:1.8.5) können wir im Feld "IIO context URI" des PlutoSDR Source-Blocks in GNURadio eintragen. 
+
+That's it.
+
+Falls ihr noch Geräte-Blöcke für den RTL-SDR und den HackRF One möchtet:
+Bei der Installation von "GQRX" (einem simplen SDR-Graphical-Frontend, RX only) werden die Treiber und GnuRadio-Blöcke für HackRF und RTL-SDR mitinstalliert:
+$ sudo apt-get install gqrx-sdr 
+
+Danach Neustarten, und die Blöcke sind in GnuRadio-Companion vorhanden.
