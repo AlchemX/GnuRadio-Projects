@@ -2,9 +2,10 @@ Guete Morge!  (April 2022)
 Einige von euch können sich vielleicht noch erinnern, dass ich vor einiger Zeit eine riesenlange komplexe Anleitung geschrieben habe, wie man ADALM-PLUTO SDR auf Linux installiert.
 
 Mit GNURadio 3.10+ auf Ubuntu 21.10 (Irritierender Iltis oder sowas) sind die ganzen Libraries für ADALM-PLUTO bereits "drin".
+(Link-Referenz: https://wiki.gnuradio.org/index.php?title=InstallingGR )
 Ich habe auf dem frisch aufgesetzten Rechner lediglich noch sechs Kommandozeilenbefehle benötigt, die wie folgt funktionieren:
 
-$ sudo add-apt-repository ppa:gnuradio/gnuradio-releases   <- damit wir version 3.10+ erhalten, weil sonst Ubuntus Repos zu alt sind :P
+$ sudo add-apt-repository ppa:gnuradio/gnuradio-releases   <- damit wir version 3.10+ erhalten, weil sonst Ubuntus Repos eventuell zu alt sind :P
 
 wir können überprüfen, welche Version installiert _würde_, mit folgendem Befehl: 
 $ apt show gnuradio
@@ -18,6 +19,7 @@ $ sudo apt install python3-pip  (falls noch nicht vorhanden, bei mir zB nicht)
 $ pip3 install packaging
 
 Jetzt können wir mit "normalen" Blöcken im GNURadio rumspielen. 
+Ein Hinweis für Leute, die früher "gr-osmosdr" oder andere Pakete für HackRF & RTL-SDR installieren mussten: dies ist nun auch nicht mehr nötig - die Geräte werden bereits von der "Soapy"-Library abgedeckt. Öffnet man GNURadio-Companion, so findet man diese auf der rechten Seite im Blockverzeichniss unter "Soapy".
 
 Die Blöcke for ADALM PLUTO SRD sind auch schon da, wir benötigen für deren Benutzung aber noch eine Information: die "lokale Adresse", entweder über IP oder am USB-Bus.
 Dazu benötigen wir "libiio", welche wie folgt installiert wird:
@@ -40,9 +42,3 @@ Den letzten Teil dieser Ausgabe (usb:1.8.5) können wir im Feld "IIO context URI
 
 That's it.
 
-Falls ihr noch Geräte-Blöcke für den RTL-SDR und den HackRF One möchtet:
-Bei der Installation von "GQRX" (einem simplen SDR-Graphical-Frontend, RX only) werden die Treiber und GnuRadio-Blöcke für HackRF und RTL-SDR mitinstalliert:
-$ sudo apt-get install gqrx-sdr 
-
-Danach Neustarten, und die Blöcke sind in GnuRadio-Companion vorhanden.
-Falls du beim HackRF beim benutzen des Funktionsblocks in GnuRadio, oder in GQRX selber, einen Fehler erhälst (-1000 Device Busy), dann entweder den HackRF aus- und wieder einstecken, oder PC rebooten.
