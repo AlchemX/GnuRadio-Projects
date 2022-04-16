@@ -19,7 +19,9 @@ $ sudo apt install python3-pip  (falls noch nicht vorhanden, bei mir zB nicht)
 $ pip3 install packaging
 
 Jetzt können wir mit "normalen" Blöcken im GNURadio rumspielen. 
-Ein Hinweis für Leute, die früher "gr-osmosdr" oder andere Pakete für HackRF & RTL-SDR installieren mussten: dies ist nun auch nicht mehr nötig - die Geräte werden bereits von der "Soapy"-Library abgedeckt. Öffnet man GNURadio-Companion, so findet man diese auf der rechten Seite im Blockverzeichniss unter "Soapy".
+Ein Hinweis für Leute, die früher "gr-osmosdr" oder andere Pakete für HackRF & RTL-SDR installieren mussten: 
+dies ist nun auch nicht mehr nötig - die Geräte werden bereits von der "Soapy"-Library abgedeckt. 
+Öffnet man GNURadio-Companion, so findet man diese auf der rechten Seite im Blockverzeichniss unter "Soapy".
 
 Die Blöcke for ADALM PLUTO SRD sind auch schon da, wir benötigen für deren Benutzung aber noch eine Information: die "lokale Adresse", entweder über IP oder am USB-Bus.
 Dazu benötigen wir "libiio", welche wie folgt installiert wird:
