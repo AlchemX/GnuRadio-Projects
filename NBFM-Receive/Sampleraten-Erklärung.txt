@@ -1,0 +1,50 @@
+Amateurfunk-Schmalband-FM-Empfang
+
+Sampleraten-Mathematik:
+
+Der Soapy-Source-Block für den RTL-SDR akzeptiert lediglich folgende Sampleraten:
+250000.000000, 
+1024000.000000, 
+1536000.000000, 
+1792000.000000, 
+1920000.000000, 
+2048000.000000, 
+2160000.000000, 
+2560000.000000, 
+2880000.000000, 
+3200000.000000
+
+Am anderen Ende:
+Der Audio-Sink sollte eine sample-rate von 48'000 samples/sec erhalten ... warum?
+Siehe: https://wiki.gnuradio.org/index.php?title=Audio_Sink
+(Ich habe problemlos bis zu 200ks/sec ausprobiert... das ging trotzdem. 
+Naja, halten wir uns an die Vorgaben aus dem Wiki)
+
+
+Heisst also, dass wir an irgend einem Punkt einen Rational Resample einsezten müssen, um die Sampleraten aufeinander anzupassen.
+Ein Rational resampler kann nur ganzzahlige "Brüche" erzeugen, also macht es sinn, die SDR-Samplerate entsprechend zu wählen. Da ein FM-Kanal auf 2m/70cm ca 12kHz umfasst, reicht also theoretisch auch die kleinste Samplerate (250k) des RTL-SDR.
+
+
+Die höchste?
+https://www.rtl-sdr.com/about-rtl-sdr/
+-> the maximum sample rate that does not drop samples is 2.56 MS/s, however some people have had luck with 2.8MS/s and 3.2 MS/s working well on some USB 3.0 ports.
+Gut, also 2560000 oder darunter.
+
+
+Eine weitere Limitation ist im NBFM-Receive - Block versteckt:
+https://wiki.gnuradio.org/index.php?title=NBFM_Receive
+Audio rate
+    Sample rate of audio stream, >= 16k (integer)
+Quadrature rate
+    Sample rate of output stream (integer). Must be an integer multiple of Audio rate.
+(hier ist den Wiki-Authoren ein Copy-Paste-Fehler unterlaufen - es sollte natürlich heissen "Sample rate of ->input<- stream...")
+(ich habe einen Wiki-Zugang beantragt un den Fehler korrigiert).
+
+Die Audio-Rate ist bereits klar, 48k.
+
+
+Idee: 48000 * 4 = 192000... was ein Zehntel der RTL-SDR-Samplerate von 1920000 ist.
+Würde also heissen wir dezimieren die SRD-Samplerate von 1920k (1.92M) auf 192k runter, also Faktor 10.
+Damit füttern wir den NBFM-Receive Block, und erhalten am Ausgang unsere 48k-Samplerate.
+
+
