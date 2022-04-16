@@ -44,7 +44,7 @@ Viel wichtiger als das verwendete Gerät sind die Hintergrunderklärungen, sowoh
 Von dieser Basis gehe ich bei der Besprechung meiner Flowgraphs im folgenden auch aus.
 Ebenfalls gehe ich davon aus, dass ein passendes SDR-Hardware-Interface in GnuRadio eingebunden werden konnte, d.h. dass ein Treiber dafür verfügbar ist auf dem Betriebssystem, sowie ein Funktionsblock (Source bei Empfängern, oder Sink bei Sendern) für dieses SDR-Interface innerhalb GnuRadio vorzufinden ist. 
 
-Im Nächsten Kapitel widme ich mich der Installation von GnuRadio auf versch. Betriebssystemen. 
+Im nächsten Kapitel widme ich mich der Installation von GnuRadio auf versch. Betriebssystemen. 
 Da dies für viele Einsteiger ein grosses Hindernis darstellt, habe ich Anleitungen erstellt, welche die Installation der Software & Treiber in Unbuntu und Windows (10) zeigen. 
 Eine Weitere Anleitung zielt auf ein "Gesamtsystem" ab, den Raspberry Pi, welcher nach Installation des PiSDR-Images als universelle SDR-Platform genuttz werden kann.
 
@@ -53,7 +53,8 @@ Eine Weitere Anleitung zielt auf ein "Gesamtsystem" ab, den Raspberry Pi, welche
 ======================================================================================
 Diese Anleitungen wurden im April 2022 geschrieben, und könnten später veraltet sein!
 Ich werde die Betriebsysteme Windows 10 sowie Linux (Ubuntu) abdecken.
-Dies, weil es dafür die beste Softwareunterstüzung von den meisten SDR-Herstellern gibt - was auch klarstellen sollte, weshalb MacOS hier nicht vorkommt. SDR auf virtualisierten Umgebungen sind z.T. möglich, aber Problembehaftet wegen Performance und USB-Schnittstellen-Weiterleitungen etc. etc.
+Dies, weil es dafür die beste Softwareunterstüzung von den meisten SDR-Herstellern gibt - was auch klarstellen sollte, weshalb MacOS hier nicht vorkommt. 
+SDR auf virtualisierten Umgebungen sind z.T. möglich, aber Problembehaftet wegen Performance und USB-Schnittstellen-Weiterleitungen etc. etc.
 
 Alle Tutorials sind zentral hier abgelegt:
 https://github.com/AlchemX/GnuRadio-Projects/tree/master/Tutorial
@@ -74,11 +75,17 @@ oder
 https://github.com/AlchemX/GnuRadio-Projects/blob/master/Tutorial/Anleitung%20Installation%20PiSDR%20image%20auf%20Raspi%204.txt
 
 
+
 ======================================================================================
 2. Diskussion konkrete Flowgraphen
 ======================================================================================
 
 
 Als "Hello World" behandelt Mike Ossmann in seinem Tutorial auch den einfachen FM-Radioempfang. Diese Technik könnte bei uns in der Schweiz bereits in einigen Jahren passé sein, daher wird mein erster Flowgraph den im Amateurfunk üblichen Narrowband-FM nutzen bzw. empfangen.
+[continue here after replacing Osmosdr with Soapy-SRD-Blocks]
+
+
+
+
 
 
