@@ -1,7 +1,7 @@
 Amateurfunk-Schmalband-FM-Empfang
 
 Sampleraten-Mathematik:
-
+------------------------------------------------------------------------------------
 Der Soapy-Source-Block für den RTL-SDR akzeptiert lediglich folgende Sampleraten:
 250000.000000, 
 1024000.000000, 
@@ -46,7 +46,9 @@ Die Audio-Rate ist bereits klar, 48k.
 Idee: 48000 * 4 = 192000... was ein Zehntel der RTL-SDR-Samplerate von 1920000 ist.
 Würde also heissen wir dezimieren die SRD-Samplerate von 1920k (1.92M) auf 192k runter, also Faktor 10.
 Damit füttern wir den NBFM-Receive Block, und erhalten am Ausgang unsere 48k-Samplerate.
-
+------------------------------------------------------------------------------------
+-> Dieselbe Samplerathen-Kombination funktioniert auch für ADALM-PLUTO :)
+------------------------------------------------------------------------------------
 
 Der Soapy-Block für den HackRF One akzeptiert folgende Sampleraten:
 1000000.000000, 
@@ -69,3 +71,8 @@ Der Soapy-Block für den HackRF One akzeptiert folgende Sampleraten:
 18000000.000000, 
 19000000.000000, 
 20000000.000000
+
+Hier machen 2M Sinn, denn wesenlich mehr müssen wir nicht empfangen - das 2m-Band ist ja nur 2 Megaherz breit.
+Dezimieren müssen wir das Singal 2x, einmal konkret in einem Resample zum Verhältniss 12 / 50:
+Dies bringt 2M Samplerate auf 480k Samplerate, was dem 10-fachen der Audiosamplerate entspricht. 
+Wie erwähnt kann der NBFM-Block nur ganzzahlige In/Output-Verhältnisse benutzen, daher arbeitet er hier mit 480k in, 48k out Samplerate.
