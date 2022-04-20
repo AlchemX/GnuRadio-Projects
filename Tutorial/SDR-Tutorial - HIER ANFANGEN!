@@ -81,8 +81,12 @@ https://github.com/AlchemX/GnuRadio-Projects/blob/master/Tutorial/Anleitung%20In
 ======================================================================================
 
 
-Als "Hello World" behandelt Mike Ossmann in seinem Tutorial auch den einfachen FM-Radioempfang. Diese Technik könnte bei uns in der Schweiz bereits in einigen Jahren passé sein, daher wird mein erster Flowgraph den im Amateurfunk üblichen Narrowband-FM nutzen bzw. empfangen.
-[continue here after replacing Osmosdr with Soapy-SRD-Blocks]
+Als "Hello World" behandelt Mike Ossmann in seinem Tutorial auch den einfachen FM-Radioempfang. 
+Diese Technik könnte bei uns in der Schweiz bereits in einigen Jahren passé sein, daher wird mein erster Flowgraph den im Amateurfunk üblichen Narrowband-FM nutzen bzw. empfangen.
+Beispiele hierzu sind abgelegt unter: https://github.com/AlchemX/GnuRadio-Projects/tree/master/NBFM-Receive
+Jeder Flowgraph ist auch als Bild verfügbar, solltest du auf einer anderen Platform oder Version arbeiten.
+Dazu ist auch ein Text-File vorhanden, was die Überlegungen mit den Sampleraten klarstellt, und somit auch die berechnung der Rational Resampler erläutert.
+
 
 
 
